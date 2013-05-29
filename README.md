@@ -8,7 +8,7 @@ mystique grabs all image files from the top 25 of your chosen subreddits (specif
 Installation
 -----------
 
-The only dependency/requirement of mystique is to put it in /home/username/Documents/Misc . If you don't want to put it there, edit the Bash variables in wallpaper.sh.
+The only dependency/requirement of mystique is to put it in /home/username/Documents/ . If you don't want to put it there, edit the Bash variables in wallpaper.sh.
 
 mystique can also easily be configured to be used with crontab, if set up. Simply run `crontab -e` to start editing your crontab configuration, and add the following line:
 
