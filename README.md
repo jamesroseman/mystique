@@ -35,3 +35,5 @@ Mystique isn't very intelligent, and only grabs top links that end in `.jpg`. It
 Mystique also isn't very intelligent in terms of the `sublist` functionality. If you want to add a search query, you *must* add `/search.json?q=` between the subreddit list (which can be added to with `+` between subreddits) and the query itself (the long string of text after `q=`). Basically, you can copy paste what comes after the `.com/` on reddit when you search, so long as you add `.json` after the `search` keyword.
 
 If you have any other issues, or the famous "blue screen of death", look at your `mystique.log` file, which is by default stored in `/home/username/mystique.log`
+
+*Warning:* mystique has only been tested on one 12.04 Ubuntu box, and hasn't led to any problems so far. **mystique automatically filters out NSFW images, but that doesn't mean you can't be surprised, so choose subreddits carefully**. This author personally experienced the surprise of seeing a Nazi rally on his screen after adding `r/historyporn` to his sublist. No warranty, get in trouble at work at your own risk. 
