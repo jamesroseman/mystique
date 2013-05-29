@@ -5,6 +5,11 @@ PATH=$PATH:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin:/usr/local/sbin:/usr/local/
 # James Roseman
 
 # Check dependencies
+PYTHON=`which python`
+if [[ -z $PYTHON ]]; then
+    sudo apt-get install python
+fi
+
 CURL=`which curl`
 if [[ -z $CURL ]]; then
     sudo apt-get install curl
@@ -45,12 +50,15 @@ X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
 Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
 RESOLUTION=$X"x"$Y
 
+# Format the sublist
+python sublist_format.py 
+
 CURR=`shuf -i 0-25 -n 1`
 NEXT=`echo $(($CURR + 1))`
 USR=`whoami`
 HOMEDIR="/home/$USR/mystique"
 PYSCRAPE=$HOMEDIR
-SUBS=`cat $HOMEDIR/sublist`
+SUBS=`cat $HOMEDIR/.sublist`
 PRE="/search.json?q=%5B"
 POS="%5D&restrict_sr=on&sort=relevance&t=all"
 IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $CURR`
