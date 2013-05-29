@@ -1,7 +1,7 @@
 mystique
 ========
 
-Reddit-based Wallpaper Changer
+*Reddit-based Wallpaper Changer for Ubuntu 12.04*
 
 mystique grabs all image files from the top 25 of your chosen subreddits (specified in 'sublist'). It then randomly chooses your wallpaper, and is programmed never to chose the same wallpaper twice in a row.
 
