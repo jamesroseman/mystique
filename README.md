@@ -19,6 +19,8 @@ Be sure to leave a newline at the end of your crontab.
 Customization
 -------------
 
+By default, mystique is configured to grab images from `r/wallpapers`
+
 Mystique grabs subreddits chosen from `sublist` which must have no added whitespace. If you wanted top pictures from `r/wallpapers`, your sublist would read:
 
     wallpapers
