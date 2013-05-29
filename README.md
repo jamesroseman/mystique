@@ -10,6 +10,8 @@ Installation
 
 The only dependency/requirement of mystique is to put it in /home/username/. If you don't want to put it there, edit the `$HOMEDIR` variable in wallpaper.sh.
 
+Other dependencies will be installed automatically when first run, and it will break if you do not have `apt-get` as a package manager, or `sudo` access.
+
 mystique can also easily be configured to be used with crontab, if set up. Simply run `crontab -e` to start editing your crontab configuration, and add the following line:
 
     */X * * * * DISPLAY=:0 GSETTINGS_BACKED=dconf /bin/sh /home/username/Documents/Misc/mystique/wallpaper.sh > /home/username/mystique.log
