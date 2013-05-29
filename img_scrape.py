@@ -32,6 +32,7 @@ def main (argv):
     try:
         json_obj = urlopen(url).read()
     except:
+        # Instead of breaking, try again.
         main (argv)
         return -1
 

@@ -1,7 +1,7 @@
 #!/bin/bash
-PATH=$PATH:/bin:/usr/bin:/bin:/usr/bin:/usr/lib/lightdm/lightdm:/bin:/opt/intellij:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/jdk1.7.0_03/bin:/home/site/trsrc-MAINLINE/scripts:/usr/jdk1.7.0_03/bin:/home/site/trsrc-MAINLINE/scripts
+PATH=$PATH:/bin:/usr/bin:/bin:/usr/bin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
-# Set the wallpaper to the current top of /r/wallpapers
+# Set the wallpaper to random of top 25 of subreddits in sublist
 # James Roseman
 
 CURR=`shuf -i 0-25 -n 1`
@@ -15,8 +15,9 @@ PICDIRPATH="/home/$USR/Pictures/wallpapers/"
 ARCHIVEPATH="/home/$USR/Pictures/warchive/"
 TMPPATH="/tmp/wall"
 
+mkdir -p $PICDIRPATH
+mkdir -p $ARCHIVEPATH
 mkdir -p $TMPPATH
-echo $IMGURL
 
 cd $TMPPATH; 
 mv * $ARCHIVEPATH;
@@ -41,4 +42,4 @@ mv $PICDIRPATH* $ARCHIVEPATH
 mv $IMGNAME $PICDIRPATH
 
 gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH"
-echo $IMGNAME
+echo $IMGURL
