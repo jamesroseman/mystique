@@ -19,3 +19,10 @@ To start editing your crontab configuration, and add the following line:
     */X * * * * DISPLAY=:0 GSETTINGS_BACKED=dconf /bin/sh /home/username/Documents/Misc/mystique/wallpaper.sh > /home/username/mystique.log
 
 Be sure to leave a newline at the end of your crontab.
+
+Known Issues
+-------------
+
+Mystique isn't very intelligent, and only grabs top links that end in ".jpg". It doesn't append them to imgur links, and it doesn't go through albums. 
+
+If you have any other issues, or the famous "blue screen of death", look at your mystique.log file, which is by default stored in `/home/username/mystique.log`
