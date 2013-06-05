@@ -10,11 +10,17 @@
 import sys
 
 def main (argv):
+    templines = []
     f = open('sublist')
-    new_sublist = f.read().replace('\n', '+')[:-1]
+    for line in f:
+        if line.strip().startswith("#"):
+            pass
+        else:
+            templines.append(line.strip()+"+")
     f.close()
+
     f = open('.sublist', 'w')
-    f.write(new_sublist)
+    f.write('+'.join(templines)[:-1].replace("++", "+"))
     f.close()
 
 if __name__ == "__main__":

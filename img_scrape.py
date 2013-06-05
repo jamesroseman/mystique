@@ -35,13 +35,18 @@ def main (argv):
         # Instead of breaking, try again.
         main (argv)
         return -1
+    img_check = lambda x: (x["data"]["url"].endswith(".jpg") or "imgur" in x["data"]["url"]) and not x["data"]["over_18"]
+    img_list = map(lambda x: x["data"]["url"], filter(img_check, json.loads(json_obj)["data"]["children"]))
 
-    img_list = map(lambda x: x["data"]["url"], filter(lambda x: x["data"]["url"].endswith(".jpg") and not x["data"]["over_18"], json.loads(json_obj)["data"]["children"]))
-	
     try:
-        print img_list[int(argv[1])]
+        ret = img_list[int(argv[1])]
     except IndexError:
-        print img_list[0]
+        ret = img_list[0]
+    
+    if ret.endswith(".jpg"):
+        print ret
+    else:
+        print ret + ".jpg"
 
 if __name__ == "__main__":
 	main (sys.argv[1:])
