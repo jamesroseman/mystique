@@ -11,7 +11,7 @@
 #  May, 2013
 
 import sys
-from urllib2 import urlopen
+from urllib2 import urlopen, HTTPError
 
 try:
 	import simplejson as json
@@ -42,11 +42,21 @@ def main (argv):
         ret = img_list[int(argv[1])]
     except IndexError:
         ret = img_list[0]
-    
-    if ret.endswith(".jpg"):
-        print ret
-    else:
-        print ret + ".jpg"
+   
+    done = False
+    i = int(argv[1])
+    while done == False:
+        try:
+            if not img_list[i].endswith(".jpg"):
+                img_list[i] += ".jpg"
+            urlopen(img_list[i])
+            done = True
+        except HTTPError:
+            i += 1
+        except IndexError:
+            i = 0
+
+    print img_list[i]
 
 if __name__ == "__main__":
 	main (sys.argv[1:])
