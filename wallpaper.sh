@@ -53,20 +53,19 @@ RESOLUTION=$X"x"$Y
 # Format the sublist
 python sublist_format.py 
 
-CURR=`shuf -i 0-25 -n 1`
+CURR=`shuf -i 0-100 -n 1`
 NEXT=`echo $(($CURR + 1))`
 USR=`whoami`
 HOMEDIR="/home/$USR/mystique"
 PYSCRAPE=$HOMEDIR
 SUBS=`cat $HOMEDIR/.sublist`
 PRE="/search.json?q=%5B"
-POS="%5D&restrict_sr=on&sort=relevance&t=all"
+POS="%5D&restrict_sr=on&sort=relevance&t=all&limit=100"
 SUBLIST=$SUBS$PRE$RESOLUTION$POS
 IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $CURR`
 PICDIRPATH="/home/$USR/Pictures/wallpapers/"
 ARCHIVEPATH="/home/$USR/Pictures/warchive/"
 TMPPATH="/tmp/myst"
-
 
 mkdir -p $PICDIRPATH
 mkdir -p $ARCHIVEPATH
