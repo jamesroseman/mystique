@@ -72,8 +72,7 @@ mkdir -p $PICDIRPATH
 mkdir -p $ARCHIVEPATH
 mkdir -p $TMPPATH
 
-cd $TMPPATH; 
-mv * $ARCHIVEPATH;
+cd $TMPPATH && mv * $ARCHIVEPATH
 curl -O $IMGURL; 
 IMGNAME=`ls`
 IMGPATH=$PICDIRPATH$IMGNAME
@@ -84,15 +83,12 @@ if [ -a $IMGPATH ];
         echo "Trying second..."
         cd $HOMEDIR
         IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $NEXT`
-        cd $TMPPATH
-        mv * $ARCHIVEPATH
-        curl -O $IMGURL
+        cd $TMPPATH && mv * $ARCHIVEPATH && curl -O $IMGURL
         IMGNAME=`ls`
         IMGPATH=$PICDIRPATH$IMGNAME
 fi
 
-mv $PICDIRPATH* $ARCHIVEPATH
-mv $IMGNAME $PICDIRPATH
+mv $PICDIRPATH* $ARCHIVEPATH && mv $IMGNAME $PICDIRPATH
 
 gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH"
 echo $IMGURL
