@@ -61,12 +61,12 @@ PYSCRAPE=$HOMEDIR
 SUBS=`cat $HOMEDIR/.sublist`
 PRE="/search.json?q=%5B"
 POS="%5D&restrict_sr=on&sort=relevance&t=all"
+SUBLIST=$SUBS$PRE$RESOLUTION$POS
 IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $CURR`
 PICDIRPATH="/home/$USR/Pictures/wallpapers/"
 ARCHIVEPATH="/home/$USR/Pictures/warchive/"
 TMPPATH="/tmp/myst"
 
-SUBLIST=$SUBS$PRE$RESOLUTION$POS
 
 mkdir -p $PICDIRPATH
 mkdir -p $ARCHIVEPATH
@@ -88,7 +88,8 @@ if [ -a $IMGPATH ];
         IMGPATH=$PICDIRPATH$IMGNAME
 fi
 
-mv $PICDIRPATH* $ARCHIVEPATH && mv $IMGNAME $PICDIRPATH
+mv $PICDIRPATH* $ARCHIVEPATH 
+mv $IMGNAME $PICDIRPATH
 
 gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH"
 echo $IMGURL
