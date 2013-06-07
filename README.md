@@ -42,7 +42,9 @@ Mystique will *automatically* grab only wallpapers that fit your native resoluti
 
 If it seems to only be grabbing one wallpaper and you have a very small or very strange resolution, try toggling off resolution by editing your .resolution:
 
-    FALSE
+    1
+
+1 is FALSE while 0 is TRUE for resolution grabbing.
 
 Known Issues
 -------------

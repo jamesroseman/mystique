@@ -45,23 +45,28 @@ if [[ -z $CUT ]]; then
     sudo apt-get install cut
 fi
 
-# Configure resolution
-X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
-Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
-RESOLUTION=$X"x"$Y
+USR=`whoami`
+HOMEDIR="/home/$USR/mystique"
+
+RESOLTOGGLE=`cat $HOMEDIR/.resolution | head -1`
+RESOLUTION=""
+if [[ $RESOLTOGGLE -eq 0 ]]; then
+    # Configure resolution
+    X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+    Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+    RESOLUTION="%5B"$X"x"$Y"%5D"
+fi
 
 # Format the sublist
 python $HOMEDIR/sublist_format.py 
 
 CURR=`shuf -i 0-100 -n 1`
 NEXT=`shuf -i 0-100 -n 1`
-USR=`whoami`
-HOMEDIR="/home/$USR/mystique"
 PYSCRAPE=$HOMEDIR
 SUBS=`cat $HOMEDIR/.sublist`
 PRE="/search.json?"
 POS="restrict_sr=on&sort=relevance&t=all&limit=250&sort=all"
-SUBLIST=$SUBS$PRE$POS
+SUBLIST=$SUBS$PRE$RESOLUTION$POS
 IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $CURR`
 PICDIRPATH="/home/$USR/Pictures/wallpapers/"
 ARCHIVEPATH="/home/$USR/Pictures/warchive/"
@@ -87,8 +92,9 @@ if [ -a $IMGPATH ];
         IMGPATH=$PICDIRPATH$IMGNAME
 fi
 
-mv $PICDIRPATH* $ARCHIVEPATH && 
+mv $PICDIRPATH* $ARCHIVEPATH  
 mv $IMGNAME $PICDIRPATH && 
 gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH" &&
-echo "$IMGURL" &&
-echo "$IMGPATH"
+echo $IMGURL &&
+echo $IMGPATH 
+echo $SUBLIST
