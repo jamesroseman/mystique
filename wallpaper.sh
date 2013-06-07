@@ -58,7 +58,7 @@ if [[ $RESOLTOGGLE -eq 0 ]]; then
 fi
 
 # Format the sublist
-python $HOMEDIR/sublist_format.py 
+python $HOMEDIR/sublist_format.py $HOMEDIR/sublist $HOMEDIR/.sublist 
 
 CURR=`shuf -i 0-100 -n 1`
 NEXT=`shuf -i 0-100 -n 1`

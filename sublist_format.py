@@ -11,7 +11,9 @@ import sys
 
 def main (argv):
     templines = []
-    f = open('sublist')
+    sublist_file = argv[0]
+    dot_sublist_file = argv[1]
+    f = open(sublist_file)
     for line in f:
         if line.strip().startswith("#"):
             pass
@@ -19,7 +21,7 @@ def main (argv):
             templines.append(line.strip()+"+")
     f.close()
 
-    f = open('.sublist', 'w')
+    f = open(dot_sublist_file, 'w')
     f.write('+'.join(templines)[:-1].replace("++", "+"))
     f.close()
 
