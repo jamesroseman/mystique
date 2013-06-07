@@ -12,16 +12,21 @@ The only dependency/requirement of mystique is to put it in /home/username/. If 
 
 Other dependencies will be installed automatically when first run, and it will break if you do not have `apt-get` as a package manager, or `sudo` access.
 
+In other words, install:
+
+    cd
+    git clone https://github.com/jamesroseman/mystique.git
+
 mystique can also easily be configured to be used with crontab, if set up. Simply run `crontab -e` to start editing your crontab configuration, and add the following line:
 
-    */X * * * * DISPLAY=:0 GSETTINGS_BACKED=dconf /bin/sh /home/username/Documents/Misc/mystique/wallpaper.sh > /home/username/mystique.log
+    */X * * * * DISPLAY=:0 GSETTINGS_BACKED=dconf /bin/sh /home/username/mystique/wallpaper.sh > /home/username/mystique.log
 
 Be sure to leave a newline at the end of your crontab.
 
 Customization
 -------------
 
-By default, mystique is configured to grab images from `r/wallpapers`
+By default, mystique is configured to grab images from a variety of subreddits from the SFW porn suite (amateur and professional photography generally).
 
 Mystique grabs subreddits chosen from `sublist` which must have no added whitespace. If you wanted top pictures from `r/wallpapers`, your sublist would read:
 
@@ -35,10 +40,14 @@ Mystique supports multiple subreddits, just add a newline between each. `sublist
 
 Mystique will *automatically* grab only wallpapers that fit your native resolution.
 
+If it seems to only be grabbing one wallpaper and you have a very small or very strange resolution, try toggling off resolution by editing your .resolution:
+
+    FALSE
+
 Known Issues
 -------------
 
-Mystique isn't very intelligent, and only grabs top links that end in `.jpg`. It doesn't append them to imgur links, and it doesn't go through albums. 
+Mystique isn't very intelligent, and only grabs top links that end in `.jpg or imgur links (to which it appends ".jpg"). 
 
 If you have any other issues, or the famous "blue screen of death", look at your `mystique.log` file, which is by default stored in `/home/username/mystique.log`
 
