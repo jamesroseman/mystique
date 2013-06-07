@@ -51,17 +51,17 @@ Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
 RESOLUTION=$X"x"$Y
 
 # Format the sublist
-python sublist_format.py 
+python $HOMEDIR/sublist_format.py 
 
-CURR=`shuf -i 0-250 -n 1`
-NEXT=`echo $(($CURR + 1))`
+CURR=`shuf -i 0-100 -n 1`
+NEXT=`shuf -i 0-100 -n 1`
 USR=`whoami`
 HOMEDIR="/home/$USR/mystique"
 PYSCRAPE=$HOMEDIR
 SUBS=`cat $HOMEDIR/.sublist`
-PRE="/search.json?q=%5B"
-POS="%5D&restrict_sr=on&sort=relevance&t=all&limit=250&sort=all"
-SUBLIST=$SUBS$PRE$RESOLUTION$POS
+PRE="/search.json?"
+POS="restrict_sr=on&sort=relevance&t=all&limit=250&sort=all"
+SUBLIST=$SUBS$PRE$POS
 IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $CURR`
 PICDIRPATH="/home/$USR/Pictures/wallpapers/"
 ARCHIVEPATH="/home/$USR/Pictures/warchive/"
@@ -87,9 +87,8 @@ if [ -a $IMGPATH ];
         IMGPATH=$PICDIRPATH$IMGNAME
 fi
 
-mv $PICDIRPATH* $ARCHIVEPATH 
-mv $IMGNAME $PICDIRPATH
-
-gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH"
-echo $IMGURL
-echo $IMGPATH
+mv $PICDIRPATH* $ARCHIVEPATH && 
+mv $IMGNAME $PICDIRPATH && 
+gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH" &&
+echo "$IMGURL" &&
+echo "$IMGPATH"
