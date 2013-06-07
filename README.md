@@ -16,6 +16,12 @@ In other words, install:
 
     cd
     git clone https://github.com/jamesroseman/mystique.git
+    
+mystique can obviously be easily configured into your `.bashrc` so that it can be run with `mystique` command:
+
+    alias mystique='/home/username/mystique/wallpaper.sh'
+
+After adding this line to your `.bashrc` (if you're using default Bash shell), you'll be able to run `mystique` to change your wallpaper.
 
 mystique can also easily be configured to be used with crontab, if set up. Simply run `crontab -e` to start editing your crontab configuration, and add the following line:
 
