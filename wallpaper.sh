@@ -95,6 +95,20 @@ fi
 mv $PICDIRPATH* $ARCHIVEPATH  
 mv $IMGNAME $PICDIRPATH && 
 gsettings set org.gnome.desktop.background picture-uri "file://$IMGPATH" &&
+
+TERMTOGGLE=`cat $HOMEDIR/.terminal | head -1`
+if [[ $TERMTOGGLE -eq 0 ]]; then
+    LDPER=`convert $IMGPATH -colorspace gray -format "%[fx:100*mean]%%" info: | grep -o [0-9]*\.[0-9]* | head -1`
+    LDPER=`perl -w -e "use POSIX; print ceil($LDPER)"`
+    if [[ $LDPER -ge 25 ]]; then
+        echo "ge 20"
+        $HOMEDIR/.terminal-colors/set_light.sh
+    else
+        echo $LDPER
+        $HOMEDIR/.terminal-colors/set_dark.sh
+    fi
+fi
+
 echo $IMGURL &&
 echo $IMGPATH 
 echo $SUBLIST
