@@ -54,7 +54,7 @@ if [[ $RESOLTOGGLE -eq 0 ]]; then
     # Configure resolution
     X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
     Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
-    RESOLUTION="%5B"$X"x"$Y"%5D"
+    RESOLUTION="%5B"$X"x"$Y"%5D&"
 fi
 
 # Format the sublist
@@ -64,7 +64,7 @@ CURR=`shuf -i 0-100 -n 1`
 NEXT=`shuf -i 0-100 -n 1`
 PYSCRAPE=$HOMEDIR
 SUBS=`cat $HOMEDIR/.sublist`
-PRE="/search.json?"
+PRE="/search.json?q="
 POS="restrict_sr=on&sort=relevance&t=all&limit=250&sort=all"
 SUBLIST=$SUBS$PRE$RESOLUTION$POS
 IMGURL=`$PYSCRAPE/img_scrape.py $SUBLIST $CURR`
