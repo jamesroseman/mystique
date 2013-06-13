@@ -57,6 +57,11 @@ if [[ $RESOLTOGGLE -eq 0 ]]; then
     RESOLUTION="%5B"$X"x"$Y"%5D&"
 fi
 
+SUSPENDTOGGLE=`cat $HOMEDIR/.suspend | head -1`
+if [[ $SUSPENDTOGGLE -eq 0 ]]; then
+    exit
+fi
+
 # Format the sublist
 python $HOMEDIR/sublist_format.py $HOMEDIR/sublist $HOMEDIR/.sublist 
 
