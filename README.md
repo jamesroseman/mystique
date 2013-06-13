@@ -59,4 +59,6 @@ Mystique isn't very intelligent, and only grabs top links that end in `.jpg or i
 
 If you have any other issues, or the famous "blue screen of death", look at your `mystique.log` file, which is by default stored in `/home/username/mystique.log`
 
+If you have trouble with the terminal color schemes, try running the install script, which will install dependencies for the solarized color schemes.
+
 *Warning:* mystique has only been tested on one 12.04 Ubuntu box, and hasn't led to any problems so far. *`mystique` automatically filters out NSFW images, but that doesn't mean you can't be surprised, so choose subreddits carefully*. This author personally experienced the surprise of seeing a Nazi rally on his screen after adding `r/historyporn` to his sublist. No warranty, get in trouble at work at your own risk. 
